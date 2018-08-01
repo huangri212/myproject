@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="static/style.css">
+	<script type="text/javascript"></script>
+	{% if title %}
+	<title>{{title}} - microblog</title>
+	{% else %}
+	<title>microblog</title>
+	{% endif %}
+</head>
+<body>
+	<div>
+		<a href="{{url_for('index')}}">Microblog Home</a>
+		{% if current_user.is_anonymous %}
+		<a href="{{url_for('login')}}">Login</a>
+		{% else %}
+		
+		<a href="{{url_for('user',name = current_user.name)}}">My Profile</a>
+		<a href="{{url_for('logout')}}">Logout</a>
+		{% endif%}
+	</div>
+	
+	<hr>
+	{% with messages =  get_flashed_messages(with_categories=true) %}
+	{% if messages %}
+	<ul class="flashes">
+		{% for category,message in messages %}
+		<li class="{{ category }}" >{{message}}</li>
+		{% endfor %}
+	</ul>	
+	{% endif %}
+	{% endwith%}
+	{% block content %}{% endblock %}
+</body>
+</html>

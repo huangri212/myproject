@@ -1,0 +1,28 @@
+h1 {
+	float: left;
+	/* margin-bottom: 100px; */
+}
+h1#signin {
+	margin-left: 200px;
+}
+h2 {
+	float: left;
+	text-indent: 30px;
+	/*padding-top:0px; */
+}
+form{
+	display: inline;
+	float:left;
+	padding-top: 100px;
+	padding-left: 50px;
+}
+ul#text {
+	float: left;
+	border: 10px;
+	text-indent: 30px;
+	/*padding-top:0px; */
+}
+img {
+	float: left;
+	margin-top: 9px;
+}
