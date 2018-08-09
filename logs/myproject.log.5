@@ -1,118 +1,138 @@
-2018-07-31 01:29:10,789 ERROR:Exception on /user/mimi [GET] [in c:\python36\lib\site-packages\flask\app.py:1761]
+2018-08-07 15:52:38,307 ERROR:Exception on /index [GET] [in C:\Python36\lib\site-packages\flask\app.py:1761]
 Traceback (most recent call last):
-  File "c:\python36\lib\site-packages\flask\app.py", line 2292, in wsgi_app
+  File "C:\Python36\lib\site-packages\flask\app.py", line 2292, in wsgi_app
     response = self.full_dispatch_request()
-  File "c:\python36\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
+  File "C:\Python36\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
     rv = self.handle_user_exception(e)
-  File "c:\python36\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
+  File "C:\Python36\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
     reraise(exc_type, exc_value, tb)
-  File "c:\python36\lib\site-packages\flask\_compat.py", line 35, in reraise
+  File "C:\Python36\lib\site-packages\flask\_compat.py", line 35, in reraise
     raise value
-  File "c:\python36\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
+  File "C:\Python36\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
     rv = self.dispatch_request()
-  File "c:\python36\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+  File "C:\Python36\lib\site-packages\flask\app.py", line 1799, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\python36\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+  File "C:\Python36\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
     return func(*args, **kwargs)
-  File "C:\Users\huanri\Documents\myproject\app\views.py", line 110, in user
-    return render_template('user.html', user = user, post = posts)
-  File "c:\python36\lib\site-packages\flask\templating.py", line 135, in render_template
+  File "C:\Users\huanri\PycharmProjects\myproject\app\views.py", line 25, in index
+    return render_template("index.html", title='Home', user=user, posts=posts
+  File "C:\Python36\lib\site-packages\flask\templating.py", line 135, in render_template
     context, ctx.app)
-  File "c:\python36\lib\site-packages\flask\templating.py", line 117, in _render
+  File "C:\Python36\lib\site-packages\flask\templating.py", line 117, in _render
     rv = template.render(context)
-  File "c:\python36\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
+  File "C:\Python36\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
     return original_render(self, *args, **kwargs)
-  File "c:\python36\lib\site-packages\jinja2\environment.py", line 1008, in render
+  File "C:\Python36\lib\site-packages\jinja2\environment.py", line 1008, in render
     return self.environment.handle_exception(exc_info, True)
-  File "c:\python36\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+  File "C:\Python36\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
     reraise(exc_type, exc_value, tb)
-  File "c:\python36\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+  File "C:\Python36\lib\site-packages\jinja2\_compat.py", line 37, in reraise
     raise value.with_traceback(tb)
-  File "C:\Users\huanri\Documents\myproject\app\templates\user.html", line 1, in top-level template code
-    {% extends "base.html"%}
-  File "C:\Users\huanri\Documents\myproject\app\templates\base.html", line 34, in top-level template code
+  File "C:\Users\huanri\PycharmProjects\myproject\app\templates\index.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\huanri\PycharmProjects\myproject\app\templates\base.html", line 34, in top-level template code
     {% block content %}{% endblock %}
-  File "C:\Users\huanri\Documents\myproject\app\templates\user.html", line 15, in block "content"
-    <p>{{ user.followers.count() }} followers, {{ user.followed.count() }} following.</p>
-  File "c:\python36\lib\site-packages\jinja2\environment.py", line 430, in getattr
+  File "C:\Users\huanri\PycharmProjects\myproject\app\templates\index.html", line 5, in block "content"
+    {{ form.hidden_tag() }}
+  File "C:\Python36\lib\site-packages\jinja2\environment.py", line 430, in getattr
     return getattr(obj, attribute)
-jinja2.exceptions.UndefinedError: 'app.models.User object' has no attribute 'followers'
-2018-07-31 11:33:56,022 ERROR:Exception on /user/mimi [GET] [in c:\python36\lib\site-packages\flask\app.py:1761]
+jinja2.exceptions.UndefinedError: 'form' is undefined
+2018-08-07 16:22:37,233 ERROR:Exception on /index [GET] [in c:\users\huanri\myproject\lib\site-packages\flask\app.py:1761]
 Traceback (most recent call last):
-  File "c:\python36\lib\site-packages\flask\app.py", line 2292, in wsgi_app
+  File "c:\users\huanri\myproject\lib\site-packages\flask\app.py", line 2292, in wsgi_app
     response = self.full_dispatch_request()
-  File "c:\python36\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
+  File "c:\users\huanri\myproject\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
     rv = self.handle_user_exception(e)
-  File "c:\python36\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
+  File "c:\users\huanri\myproject\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
     reraise(exc_type, exc_value, tb)
-  File "c:\python36\lib\site-packages\flask\_compat.py", line 35, in reraise
-    raise value
-  File "c:\python36\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
+  File "c:\users\huanri\myproject\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
     rv = self.dispatch_request()
-  File "c:\python36\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+  File "c:\users\huanri\myproject\lib\site-packages\flask\app.py", line 1799, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\python36\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+  File "c:\users\huanri\myproject\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
     return func(*args, **kwargs)
-  File "C:\Users\huanri\Documents\myproject\app\views.py", line 110, in user
-    return render_template('user.html', user = user, post = posts)
-  File "c:\python36\lib\site-packages\flask\templating.py", line 135, in render_template
+  File "C:\Users\huanri\PycharmProjects\myproject\app\views.py", line 32, in index
+    return render_template("index.html", title='Home', user=user, posts=posts
+  File "c:\users\huanri\myproject\lib\site-packages\flask\templating.py", line 135, in render_template
     context, ctx.app)
-  File "c:\python36\lib\site-packages\flask\templating.py", line 117, in _render
+  File "c:\users\huanri\myproject\lib\site-packages\flask\templating.py", line 117, in _render
     rv = template.render(context)
-  File "c:\python36\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
-    return original_render(self, *args, **kwargs)
-  File "c:\python36\lib\site-packages\jinja2\environment.py", line 1008, in render
+  File "c:\users\huanri\myproject\lib\site-packages\jinja2\environment.py", line 1008, in render
     return self.environment.handle_exception(exc_info, True)
-  File "c:\python36\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+  File "c:\users\huanri\myproject\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
     reraise(exc_type, exc_value, tb)
-  File "c:\python36\lib\site-packages\jinja2\_compat.py", line 37, in reraise
-    raise value.with_traceback(tb)
-  File "C:\Users\huanri\Documents\myproject\app\templates\user.html", line 1, in top-level template code
-    {% extends "base.html"%}
-  File "C:\Users\huanri\Documents\myproject\app\templates\base.html", line 34, in top-level template code
+  File "C:\Users\huanri\PycharmProjects\myproject\app\templates\index.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\huanri\PycharmProjects\myproject\app\templates\base.html", line 34, in top-level template code
     {% block content %}{% endblock %}
-  File "C:\Users\huanri\Documents\myproject\app\templates\user.html", line 15, in block "content"
-    <p>{{ user.followers.count() }} followers, {{ user.followed.count() }} following.</p>
-  File "c:\python36\lib\site-packages\jinja2\environment.py", line 430, in getattr
+  File "C:\Users\huanri\PycharmProjects\myproject\app\templates\index.html", line 5, in block "content"
+    {{ form.hidden_tag() }}
+  File "c:\users\huanri\myproject\lib\site-packages\jinja2\environment.py", line 430, in getattr
     return getattr(obj, attribute)
-jinja2.exceptions.UndefinedError: 'app.models.User object' has no attribute 'followers'
-2018-08-01 14:13:34,164 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:57]
-2018-08-01 14:16:20,938 ERROR:Exception on /user/mimi [GET] [in c:\python36\lib\site-packages\flask\app.py:1761]
+UndefinedError: 'form' is undefined
+2018-08-07 16:26:03,036 ERROR:Exception on /index [GET] [in c:\users\huanri\myproject\lib\site-packages\flask\app.py:1761]
 Traceback (most recent call last):
-  File "c:\python36\lib\site-packages\flask\app.py", line 2292, in wsgi_app
+  File "c:\users\huanri\myproject\lib\site-packages\flask\app.py", line 2292, in wsgi_app
     response = self.full_dispatch_request()
-  File "c:\python36\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
+  File "c:\users\huanri\myproject\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
     rv = self.handle_user_exception(e)
-  File "c:\python36\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
+  File "c:\users\huanri\myproject\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
     reraise(exc_type, exc_value, tb)
-  File "c:\python36\lib\site-packages\flask\_compat.py", line 35, in reraise
-    raise value
-  File "c:\python36\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
+  File "c:\users\huanri\myproject\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
     rv = self.dispatch_request()
-  File "c:\python36\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+  File "c:\users\huanri\myproject\lib\site-packages\flask\app.py", line 1799, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\python36\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+  File "c:\users\huanri\myproject\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
     return func(*args, **kwargs)
-  File "C:\Users\huanri\Documents\myproject\app\views.py", line 110, in user
-    return render_template('user.html', user = user, post = posts)
-  File "c:\python36\lib\site-packages\flask\templating.py", line 135, in render_template
+  File "C:\Users\huanri\PycharmProjects\myproject\app\views.py", line 32, in index
+    )
+  File "c:\users\huanri\myproject\lib\site-packages\flask\templating.py", line 135, in render_template
     context, ctx.app)
-  File "c:\python36\lib\site-packages\flask\templating.py", line 117, in _render
+  File "c:\users\huanri\myproject\lib\site-packages\flask\templating.py", line 117, in _render
     rv = template.render(context)
-  File "c:\python36\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
-    return original_render(self, *args, **kwargs)
-  File "c:\python36\lib\site-packages\jinja2\environment.py", line 1008, in render
+  File "c:\users\huanri\myproject\lib\site-packages\jinja2\environment.py", line 1008, in render
     return self.environment.handle_exception(exc_info, True)
-  File "c:\python36\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+  File "c:\users\huanri\myproject\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
     reraise(exc_type, exc_value, tb)
-  File "c:\python36\lib\site-packages\jinja2\_compat.py", line 37, in reraise
-    raise value.with_traceback(tb)
-  File "C:\Users\huanri\Documents\myproject\app\templates\user.html", line 1, in top-level template code
-    {% extends "base.html"%}
-  File "C:\Users\huanri\Documents\myproject\app\templates\base.html", line 34, in top-level template code
+  File "C:\Users\huanri\PycharmProjects\myproject\app\templates\index.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\huanri\PycharmProjects\myproject\app\templates\base.html", line 34, in top-level template code
     {% block content %}{% endblock %}
-  File "C:\Users\huanri\Documents\myproject\app\templates\user.html", line 15, in block "content"
-    <p>{{ user.followers.count() }} followers, {{ user.followed.count() }} following.</p>
-  File "c:\python36\lib\site-packages\jinja2\environment.py", line 430, in getattr
+  File "C:\Users\huanri\PycharmProjects\myproject\app\templates\index.html", line 5, in block "content"
+    {{ form.hidden_tag() }}
+  File "c:\users\huanri\myproject\lib\site-packages\jinja2\environment.py", line 430, in getattr
     return getattr(obj, attribute)
-jinja2.exceptions.UndefinedError: 'app.models.User object' has no attribute 'followers'
+UndefinedError: 'form' is undefined
+2018-08-07 16:51:47,503 ERROR:Exception on /index [GET] [in c:\users\huanri\myproject\lib\site-packages\flask\app.py:1761]
+Traceback (most recent call last):
+  File "c:\users\huanri\myproject\lib\site-packages\flask\app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "c:\users\huanri\myproject\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "c:\users\huanri\myproject\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "c:\users\huanri\myproject\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\users\huanri\myproject\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "c:\users\huanri\myproject\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "C:\Users\huanri\PycharmProjects\myproject\app\views.py", line 31, in index
+    return render_template("index.html", title='Home', user=user, posts=posts
+  File "c:\users\huanri\myproject\lib\site-packages\flask\templating.py", line 135, in render_template
+    context, ctx.app)
+  File "c:\users\huanri\myproject\lib\site-packages\flask\templating.py", line 117, in _render
+    rv = template.render(context)
+  File "c:\users\huanri\myproject\lib\site-packages\jinja2\environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "c:\users\huanri\myproject\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\huanri\PycharmProjects\myproject\app\templates\index.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\huanri\PycharmProjects\myproject\app\templates\base.html", line 34, in top-level template code
+    {% block content %}{% endblock %}
+  File "C:\Users\huanri\PycharmProjects\myproject\app\templates\index.html", line 7, in block "content"
+    {{ form.post.label }} <br>
+  File "c:\users\huanri\myproject\lib\site-packages\jinja2\environment.py", line 430, in getattr
+    return getattr(obj, attribute)
+UndefinedError: 'form' is undefined

@@ -1,27 +1,24 @@
-from flask import Flask, url_for, request, render_template, g, session
-from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager
-from flask_openid import OpenID
-from config import basedir, Config
-from flask_migrate import Migrate
-import os, logging
 import logging
-from logging.handlers import SMTPHandler
-from flask_mail import Message
-from flask_mail import Mail
+import os
 from logging.handlers import RotatingFileHandler
+from logging.handlers import SMTPHandler
 
-# from config import Config
+from flask import Flask
+from flask_login import LoginManager
+from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
+from flask_mail import Mail
+
 
 app = Flask(__name__)
 FLASK_DEBUG = False
-
+mail = Mail(app)
 app.config.update(dict(
     SECRET_KEY="powerful secretkey",
     WTF_CSRF_SECRET_KEY="a csrf secret key"
 ))
 app.config.from_object('config')
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///C:\\Users\\huanri\\Documents\\myproject\\app.db"
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///C:\\Users\\huanri\\PycharmProjects\\myproject\\app.db"
 db = SQLAlchemy(app)  # type: object
 migrate = Migrate(app, db)
 login = LoginManager(app)
@@ -54,7 +51,7 @@ if not app.debug:
     file_handler.setLevel(logging.INFO)
     app.logger.addHandler(file_handler)
     app.logger.setLevel(logging.INFO)
-    app.logger.info('Microblog startup')
+    # app.logger.info('Microblog startup')
 
 from app import views, models
 from app import errors

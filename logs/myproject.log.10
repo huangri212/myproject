@@ -1,126 +1,141 @@
-2018-07-30 15:29:34,886 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:61]
-2018-07-30 15:30:32,918 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:61]
-2018-07-30 15:31:10,618 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:61]
-2018-07-30 15:31:25,612 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:61]
-2018-07-30 15:31:53,786 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:61]
-2018-07-30 15:32:46,397 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:61]
-2018-07-30 15:39:43,388 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:61]
-2018-07-30 15:40:10,308 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:61]
-2018-07-30 15:40:17,725 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:61]
-2018-07-30 15:41:33,457 ERROR:Exception on /edit_profile [POST] [in c:\python36\lib\site-packages\flask\app.py:1761]
+2018-08-06 16:07:10,789 ERROR:Exception on /login [GET] [in C:\Python36\lib\site-packages\flask\app.py:1761]
 Traceback (most recent call last):
-  File "c:\python36\lib\site-packages\sqlalchemy\engine\base.py", line 1193, in _execute_context
-    context)
-  File "c:\python36\lib\site-packages\sqlalchemy\engine\default.py", line 509, in do_execute
-    cursor.execute(statement, parameters)
-sqlite3.IntegrityError: UNIQUE constraint failed: user.name
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "c:\python36\lib\site-packages\flask\app.py", line 2292, in wsgi_app
+  File "C:\Python36\lib\site-packages\flask\app.py", line 2292, in wsgi_app
     response = self.full_dispatch_request()
-  File "c:\python36\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
+  File "C:\Python36\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
     rv = self.handle_user_exception(e)
-  File "c:\python36\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
+  File "C:\Python36\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
     reraise(exc_type, exc_value, tb)
-  File "c:\python36\lib\site-packages\flask\_compat.py", line 35, in reraise
+  File "C:\Python36\lib\site-packages\flask\_compat.py", line 35, in reraise
     raise value
-  File "c:\python36\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
+  File "C:\Python36\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
     rv = self.dispatch_request()
-  File "c:\python36\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+  File "C:\Python36\lib\site-packages\flask\app.py", line 1799, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\python36\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
-    return func(*args, **kwargs)
-  File "C:\Users\huanri\Documents\myproject\app\views.py", line 62, in edit_profile
-    db.session.commit()
-  File "c:\python36\lib\site-packages\sqlalchemy\orm\scoping.py", line 153, in do
-    return getattr(self.registry(), name)(*args, **kwargs)
-  File "c:\python36\lib\site-packages\sqlalchemy\orm\session.py", line 943, in commit
-    self.transaction.commit()
-  File "c:\python36\lib\site-packages\sqlalchemy\orm\session.py", line 467, in commit
-    self._prepare_impl()
-  File "c:\python36\lib\site-packages\sqlalchemy\orm\session.py", line 447, in _prepare_impl
-    self.session.flush()
-  File "c:\python36\lib\site-packages\sqlalchemy\orm\session.py", line 2254, in flush
-    self._flush(objects)
-  File "c:\python36\lib\site-packages\sqlalchemy\orm\session.py", line 2380, in _flush
-    transaction.rollback(_capture_exception=True)
-  File "c:\python36\lib\site-packages\sqlalchemy\util\langhelpers.py", line 66, in __exit__
-    compat.reraise(exc_type, exc_value, exc_tb)
-  File "c:\python36\lib\site-packages\sqlalchemy\util\compat.py", line 249, in reraise
-    raise value
-  File "c:\python36\lib\site-packages\sqlalchemy\orm\session.py", line 2344, in _flush
-    flush_context.execute()
-  File "c:\python36\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 391, in execute
-    rec.execute(self)
-  File "c:\python36\lib\site-packages\sqlalchemy\orm\unitofwork.py", line 556, in execute
-    uow
-  File "c:\python36\lib\site-packages\sqlalchemy\orm\persistence.py", line 177, in save_obj
-    mapper, table, update)
-  File "c:\python36\lib\site-packages\sqlalchemy\orm\persistence.py", line 768, in _emit_update_statements
-    execute(statement, multiparams)
-  File "c:\python36\lib\site-packages\sqlalchemy\engine\base.py", line 948, in execute
-    return meth(self, multiparams, params)
-  File "c:\python36\lib\site-packages\sqlalchemy\sql\elements.py", line 269, in _execute_on_connection
-    return connection._execute_clauseelement(self, multiparams, params)
-  File "c:\python36\lib\site-packages\sqlalchemy\engine\base.py", line 1060, in _execute_clauseelement
-    compiled_sql, distilled_params
-  File "c:\python36\lib\site-packages\sqlalchemy\engine\base.py", line 1200, in _execute_context
-    context)
-  File "c:\python36\lib\site-packages\sqlalchemy\engine\base.py", line 1413, in _handle_dbapi_exception
-    exc_info
-  File "c:\python36\lib\site-packages\sqlalchemy\util\compat.py", line 265, in raise_from_cause
-    reraise(type(exception), exception, tb=exc_tb, cause=cause)
-  File "c:\python36\lib\site-packages\sqlalchemy\util\compat.py", line 248, in reraise
-    raise value.with_traceback(tb)
-  File "c:\python36\lib\site-packages\sqlalchemy\engine\base.py", line 1193, in _execute_context
-    context)
-  File "c:\python36\lib\site-packages\sqlalchemy\engine\default.py", line 509, in do_execute
-    cursor.execute(statement, parameters)
-sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) UNIQUE constraint failed: user.name [SQL: 'UPDATE user SET name=? WHERE user.id = ?'] [parameters: ('mimi', 2)] (Background on this error at: http://sqlalche.me/e/gkpj)
-2018-07-30 15:42:54,737 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:61]
-2018-07-30 15:44:15,320 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:61]
-2018-07-30 15:44:33,511 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:61]
-2018-07-30 15:51:51,186 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:61]
-2018-07-30 15:56:15,579 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:61]
-2018-07-30 15:57:25,038 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:61]
-2018-07-30 15:57:51,299 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:61]
-2018-07-30 15:58:07,539 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:61]
-2018-07-30 16:07:16,939 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:61]
-2018-07-30 16:09:27,244 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:61]
-2018-07-30 16:10:18,002 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:61]
-2018-07-30 16:28:10,235 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:61]
-2018-07-30 16:31:37,872 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:61]
-2018-07-30 16:32:24,060 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:61]
-2018-07-30 16:33:11,876 ERROR:Exception on /edit_profile [POST] [in c:\python36\lib\site-packages\flask\app.py:1761]
+  File "C:\Users\huanri\PycharmProjects\myproject\app\views.py", line 43, in login
+    form = LoginForm()
+  File "C:\Python36\lib\site-packages\wtforms\form.py", line 212, in __call__
+    return type.__call__(cls, *args, **kwargs)
+  File "C:\Python36\lib\site-packages\flask_wtf\form.py", line 88, in __init__
+    super(FlaskForm, self).__init__(formdata=formdata, **kwargs)
+  File "C:\Python36\lib\site-packages\wtforms\form.py", line 278, in __init__
+    self.process(formdata, obj, data=data, **kwargs)
+  File "C:\Python36\lib\site-packages\wtforms\form.py", line 132, in process
+    field.process(formdata)
+  File "C:\Python36\lib\site-packages\wtforms\csrf\core.py", line 43, in process
+    self.current_token = self.csrf_impl.generate_csrf_token(self)
+  File "C:\Python36\lib\site-packages\flask_wtf\csrf.py", line 134, in generate_csrf_token
+    token_key=self.meta.csrf_field_name
+  File "C:\Python36\lib\site-packages\flask_wtf\csrf.py", line 47, in generate_csrf
+    setattr(g, field_name, s.dumps(session[field_name]))
+  File "C:\Python36\lib\site-packages\itsdangerous.py", line 565, in dumps
+    payload = want_bytes(self.dump_payload(obj))
+  File "C:\Python36\lib\site-packages\itsdangerous.py", line 847, in dump_payload
+    json = super(URLSafeSerializerMixin, self).dump_payload(obj)
+  File "C:\Python36\lib\site-packages\itsdangerous.py", line 550, in dump_payload
+    return want_bytes(self.serializer.dumps(obj))
+  File "C:\Python36\lib\site-packages\itsdangerous.py", line 51, in dumps
+    return json.dumps(obj, separators=(',', ':'))
+  File "C:\Python36\lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "C:\Python36\lib\json\encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Python36\lib\json\encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Python36\lib\json\encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'bytes' is not JSON serializable
+2018-08-06 16:07:40,461 ERROR:Exception on /login [GET] [in C:\Python36\lib\site-packages\flask\app.py:1761]
 Traceback (most recent call last):
-  File "c:\python36\lib\site-packages\flask\app.py", line 2292, in wsgi_app
+  File "C:\Python36\lib\site-packages\flask\app.py", line 2292, in wsgi_app
     response = self.full_dispatch_request()
-  File "c:\python36\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
+  File "C:\Python36\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
     rv = self.handle_user_exception(e)
-  File "c:\python36\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
+  File "C:\Python36\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
     reraise(exc_type, exc_value, tb)
-  File "c:\python36\lib\site-packages\flask\_compat.py", line 35, in reraise
+  File "C:\Python36\lib\site-packages\flask\_compat.py", line 35, in reraise
     raise value
-  File "c:\python36\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
+  File "C:\Python36\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
     rv = self.dispatch_request()
-  File "c:\python36\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+  File "C:\Python36\lib\site-packages\flask\app.py", line 1799, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\python36\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
-    return func(*args, **kwargs)
-  File "C:\Users\huanri\Documents\myproject\app\views.py", line 59, in edit_profile
-    if form.validate_on_submit():
-  File "c:\python36\lib\site-packages\flask_wtf\form.py", line 101, in validate_on_submit
-    return self.is_submitted() and self.validate()
-  File "c:\python36\lib\site-packages\wtforms\form.py", line 310, in validate
-    return super(Form, self).validate(extra)
-  File "c:\python36\lib\site-packages\wtforms\form.py", line 152, in validate
-    if not field.validate(self, extra):
-  File "c:\python36\lib\site-packages\wtforms\fields\core.py", line 206, in validate
-    stop_validation = self._run_validation_chain(form, chain)
-  File "c:\python36\lib\site-packages\wtforms\fields\core.py", line 226, in _run_validation_chain
-    validator(form, self)
-  File "C:\Users\huanri\Documents\myproject\app\form.py", line 49, in validate_username
-    raise ValidationError('Please use a different username.')
-NameError: name 'ValidationError' is not defined
+  File "C:\Users\huanri\PycharmProjects\myproject\app\views.py", line 43, in login
+    form = LoginForm()
+  File "C:\Python36\lib\site-packages\wtforms\form.py", line 212, in __call__
+    return type.__call__(cls, *args, **kwargs)
+  File "C:\Python36\lib\site-packages\flask_wtf\form.py", line 88, in __init__
+    super(FlaskForm, self).__init__(formdata=formdata, **kwargs)
+  File "C:\Python36\lib\site-packages\wtforms\form.py", line 278, in __init__
+    self.process(formdata, obj, data=data, **kwargs)
+  File "C:\Python36\lib\site-packages\wtforms\form.py", line 132, in process
+    field.process(formdata)
+  File "C:\Python36\lib\site-packages\wtforms\csrf\core.py", line 43, in process
+    self.current_token = self.csrf_impl.generate_csrf_token(self)
+  File "C:\Python36\lib\site-packages\flask_wtf\csrf.py", line 134, in generate_csrf_token
+    token_key=self.meta.csrf_field_name
+  File "C:\Python36\lib\site-packages\flask_wtf\csrf.py", line 47, in generate_csrf
+    setattr(g, field_name, s.dumps(session[field_name]))
+  File "C:\Python36\lib\site-packages\itsdangerous.py", line 565, in dumps
+    payload = want_bytes(self.dump_payload(obj))
+  File "C:\Python36\lib\site-packages\itsdangerous.py", line 847, in dump_payload
+    json = super(URLSafeSerializerMixin, self).dump_payload(obj)
+  File "C:\Python36\lib\site-packages\itsdangerous.py", line 550, in dump_payload
+    return want_bytes(self.serializer.dumps(obj))
+  File "C:\Python36\lib\site-packages\itsdangerous.py", line 51, in dumps
+    return json.dumps(obj, separators=(',', ':'))
+  File "C:\Python36\lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "C:\Python36\lib\json\encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Python36\lib\json\encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Python36\lib\json\encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'bytes' is not JSON serializable
+2018-08-06 16:49:10,586 ERROR:Exception on /login [GET] [in C:\Python36\lib\site-packages\flask\app.py:1761]
+Traceback (most recent call last):
+  File "C:\Python36\lib\site-packages\flask\app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Python36\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Python36\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Python36\lib\site-packages\flask\_compat.py", line 35, in reraise
+    raise value
+  File "C:\Python36\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python36\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\huanri\PycharmProjects\myproject\app\views.py", line 43, in login
+    form = LoginForm()
+  File "C:\Python36\lib\site-packages\wtforms\form.py", line 212, in __call__
+    return type.__call__(cls, *args, **kwargs)
+  File "C:\Python36\lib\site-packages\flask_wtf\form.py", line 88, in __init__
+    super(FlaskForm, self).__init__(formdata=formdata, **kwargs)
+  File "C:\Python36\lib\site-packages\wtforms\form.py", line 278, in __init__
+    self.process(formdata, obj, data=data, **kwargs)
+  File "C:\Python36\lib\site-packages\wtforms\form.py", line 132, in process
+    field.process(formdata)
+  File "C:\Python36\lib\site-packages\wtforms\csrf\core.py", line 43, in process
+    self.current_token = self.csrf_impl.generate_csrf_token(self)
+  File "C:\Python36\lib\site-packages\flask_wtf\csrf.py", line 134, in generate_csrf_token
+    token_key=self.meta.csrf_field_name
+  File "C:\Python36\lib\site-packages\flask_wtf\csrf.py", line 47, in generate_csrf
+    setattr(g, field_name, s.dumps(session[field_name]))
+  File "C:\Python36\lib\site-packages\itsdangerous.py", line 565, in dumps
+    payload = want_bytes(self.dump_payload(obj))
+  File "C:\Python36\lib\site-packages\itsdangerous.py", line 847, in dump_payload
+    json = super(URLSafeSerializerMixin, self).dump_payload(obj)
+  File "C:\Python36\lib\site-packages\itsdangerous.py", line 550, in dump_payload
+    return want_bytes(self.serializer.dumps(obj))
+  File "C:\Python36\lib\site-packages\itsdangerous.py", line 51, in dumps
+    return json.dumps(obj, separators=(',', ':'))
+  File "C:\Python36\lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "C:\Python36\lib\json\encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "C:\Python36\lib\json\encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Python36\lib\json\encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'bytes' is not JSON serializable

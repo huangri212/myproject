@@ -11,13 +11,12 @@
 </head>
 <body>
 	<div>
-		<a href="{{url_for('index')}}">Microblog Home</a>
+        <p>Microblog<a href="{{url_for('index')}}"> Home</a>
 		{% if current_user.is_anonymous %}
 		<a href="{{url_for('login')}}">Login</a>
 		{% else %}
-		
 		<a href="{{url_for('user',name = current_user.name)}}">My Profile</a>
-		<a href="{{url_for('logout')}}">Logout</a>
+            <a href="{{url_for('logout')}}">Logout</a></div></p>
 		{% endif%}
 	</div>
 	

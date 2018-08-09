@@ -13,7 +13,7 @@ h2 {
 form{
 	display: inline;
 	float:left;
-	padding-top: 100px;
+
 	padding-left: 50px;
 }
 ul#text {
@@ -25,4 +25,12 @@ ul#text {
 img {
 	float: left;
 	margin-top: 9px;
+}
+div#post {
+	padding-top: 200px;
+}
+table>tr>td {
+	float: left;
+	padding: 100px;
+
 }

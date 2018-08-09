@@ -1,7 +1,27 @@
-{% extends "base.html" %}
+{% extends "base.html"%}
+
 {% block content %}
 	<p>Hi,{{current_user.name}}</p>
-	{% for post in posts %}
-	<ul id="text">{{post.author.name}} says:{{post.body}}</ul>
-	{% endfor %}
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.post.label }} <br>
+            {{ form.post(cols=32,row=40) }} <br>
+            {% for error in form.post.error %}
+                <span style="color: red">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    <div id="post">
+    {% for p in post.items %}
+        {% include '_post.html' %}
+    {% endfor %}
+    {% if pre_url %}
+        <a href="{{ pre_url }}">Newer Posts</a>
+    {% endif %}
+    {% if next_url %}
+        <a href="{{ next_url }}">Older Posts</a>
+    {% endif %}
+     </div>
 {% endblock %}

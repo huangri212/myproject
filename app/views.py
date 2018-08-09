@@ -1,28 +1,55 @@
-from flask import Flask,url_for,request,render_template,g,session,flash,redirect
-from . import app
-from config import Config
-from app import app,db,login
-from .form import LoginForm,EditProfileForm,RegisterForm
-from .models import User
+from datetime import datetime
+from flask import url_for, request, render_template, flash, redirect
 from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.urls import url_parse
-from datetime import datetime
+from app import app, db, login
+from .form import LoginForm, EditProfileForm, RegisterForm, PostForm
+from .models import User, Post
 
-@app.route('/')
-@app.route('/index')
+
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
-    posts =[
-        {'author':{'name':'John'},
-        'body':'this is the first time using machenical keyboard,the edit feeling is awesome!'
-        },
-        {
-        'author':{'name':'Henry'},
-        'body':'I don`t know why just geting to start to use it'
-        }
-    ]
-    return render_template('index.html', title='Home', user=user, posts=posts
-        )
+    form = PostForm()
+    if form.validate_on_submit():
+        post = Post(author=current_user, body=form.post.data)
+        print (post.body)
+        db.session.add(post)
+        db.session.commit()
+        # post = Post.query.filter_by(user_id=1).first()
+        flash('your post is now alive!')
+    page = request.args.get('page', 1, type=int)
+    posts = current_user.followed_posts().paginate(page, app.config['POSTS_PER_PAGE'], False)
+    if posts.has_next:
+        next_url = url_for('index', page=posts.next_num)
+    else:
+        next_url = None
+    if posts.has_prev:
+        pre_url = url_for('index', page=posts.prev_num)
+    else:
+        pre_url = None
+    return render_template('index.html', title='Home Page', post=posts, form=form,
+                           next_url=next_url, pre_url=pre_url)
+
+# pagination view function#
+
+
+@app.route('/explore')
+@login_required
+def explore():
+    page = request.args.get('page', 1, type=int)
+    post = Post.query.order_by(Post.timestamp.desc()).paginate(page,app.config('POSTS_PER_PAGE'))
+    if post.has_next:
+        next_url = url_for('index', page=post.next_num)
+    else:
+        next_url = None
+    if post.has_pre:
+        pre_url = url_for('index', post.pre_num)
+    else:
+        pre_url = None
+    return render_template('index.html', title='Home Page', post=post.items, next_url=next_url, pre_url=pre_url)
+
 
 
 @app.before_request
@@ -31,11 +58,13 @@ def before_request():
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
 
-#  登录视图函数  #
+
+# login view function  #
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    # type: () -> login
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     form = LoginForm()
@@ -53,6 +82,9 @@ def login():
     return render_template('login.html', title='Sign In', form=form)
 
 
+#  edit_profile view function  #
+
+
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
@@ -68,29 +100,8 @@ def edit_profile():
         form.about_me.data = current_user.about_me
     return render_template('edit_profile.html', title='Edit Profile', form=form)
 
-#  登录后视图函数  #
 
-
-# @oid.after_login
-# def after_login():
-# 	if resp.email is None or resp.email == '':
-# 		flash('Invalid login. Please try again.')
-# 		return redirect(url_for('login'))
-# 	user = User.query.filter_by(email.resp.email).first()
-# 	if user is None:
-# 		name = resp.name
-# 		if name is None or name == '':
-# 			user = models.User(name = name,email = resp.email)
-# 			db.session.add(user)
-# 			db.session.commit()
-# 	remember_me = False
-# 	if 'remember_me' in session:
-# 		remember_me = sessionp['remember_me']
-# 		session.pop('remember_me',None)
-# 	login_user(user, remember = remember_me)
-# 	return redirect(url_for('hello'))
-
-#  登出视图函数  #
+# logout view function  #
 
 
 @app.route('/logout')
@@ -102,32 +113,39 @@ def logout():
 @app.route('/user/<name>')
 @login_required
 def user(name):
-    user = User.query.filter_by(name=name).first_or_404()  #
+    user = User.query.filter_by(name=name).first_or_404()
     posts = [
         {'author': user, 'body': 'Test post #1'},
-        {'authot': user, 'body': 'Test post #1'}
+        {'author': user, 'body': 'Test post #1'}
     ]
-    return render_template('user.html', user = user, post = posts)
+    return render_template('user.html', user=user, post=posts)
 
 
-@app.route('/register', methods = ['GET','POST'])
+# register view function  #
+
+
+@app.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
-            return redirect(url_for('index'))
+        return redirect(url_for('index'))
     form = RegisterForm()
     if form.validate_on_submit():
-        user = User(name=form.username.data,email=form.email.data)
+        user = User(name=form.username.data, email=form.email.data)
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
-        flash(u'Congratuations,you are registered successfully', 'warning')
+        flash(u'Congratulations,you are registered successfully', 'warning')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
-@app.route('/follow')
+
+#  follow user function  #
+
+
+@app.route('/follow/<username>')
 @login_required
 def follow(username):
-    user = User.query.filter_by(username=username).first()
+    user = User.query.filter_by(name=username).first()
     if user is None:
         flash('User {} not found.'.format(username))
         return redirect(url_for('index'))
@@ -140,10 +158,13 @@ def follow(username):
     return redirect(url_for('user', username=username))
 
 
+#  follow user function  #
+
+
 @app.route('/unfollow/<username>')
 @login_required
 def unfollow(username):
-    user = User.query.filter_by(username=username).first()
+    user = User.query.filter_by(name=username).first()
     if user is None:
         flash('User {} not found.'.format(username))
         return redirect(url_for('index'))

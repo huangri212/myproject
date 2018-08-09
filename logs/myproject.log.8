@@ -1,141 +1,111 @@
-2018-07-30 16:44:24,243 ERROR:Exception on /edit_profile [POST] [in c:\python36\lib\site-packages\flask\app.py:1761]
+2018-08-07 15:15:46,288 ERROR:Exception on /index [GET] [in C:\Users\huanri\myproject\lib\site-packages\flask\app.py:1761]
 Traceback (most recent call last):
-  File "c:\python36\lib\site-packages\flask\app.py", line 2292, in wsgi_app
+  File "C:\Users\huanri\myproject\lib\site-packages\flask\app.py", line 2292, in wsgi_app
     response = self.full_dispatch_request()
-  File "c:\python36\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
+  File "C:\Users\huanri\myproject\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
     rv = self.handle_user_exception(e)
-  File "c:\python36\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
+  File "C:\Users\huanri\myproject\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
     reraise(exc_type, exc_value, tb)
-  File "c:\python36\lib\site-packages\flask\_compat.py", line 35, in reraise
-    raise value
-  File "c:\python36\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
+  File "C:\Users\huanri\myproject\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
     rv = self.dispatch_request()
-  File "c:\python36\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+  File "C:\Users\huanri\myproject\lib\site-packages\flask\app.py", line 1799, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\python36\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+  File "C:\Users\huanri\myproject\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
     return func(*args, **kwargs)
-  File "C:\Users\huanri\Documents\myproject\app\views.py", line 59, in edit_profile
-    if form.validate_on_submit():
-  File "c:\python36\lib\site-packages\flask_wtf\form.py", line 101, in validate_on_submit
-    return self.is_submitted() and self.validate()
-  File "c:\python36\lib\site-packages\wtforms\form.py", line 310, in validate
-    return super(Form, self).validate(extra)
-  File "c:\python36\lib\site-packages\wtforms\form.py", line 152, in validate
-    if not field.validate(self, extra):
-  File "c:\python36\lib\site-packages\wtforms\fields\core.py", line 206, in validate
-    stop_validation = self._run_validation_chain(form, chain)
-  File "c:\python36\lib\site-packages\wtforms\fields\core.py", line 226, in _run_validation_chain
-    validator(form, self)
-  File "C:\Users\huanri\Documents\myproject\app\form.py", line 49, in validate_username
-NameError: name 'ValidationError' is not defined
-2018-07-30 16:52:06,491 ERROR:Exception on /edit_profile [POST] [in c:\python36\lib\site-packages\flask\app.py:1761]
+  File "C:\Users\huanri\PycharmProjects\myproject\app\views.py", line 25, in index
+    return render_template("index.html", title='Home', user=user, posts=posts
+  File "C:\Users\huanri\myproject\lib\site-packages\flask\templating.py", line 135, in render_template
+    context, ctx.app)
+  File "C:\Users\huanri\myproject\lib\site-packages\flask\templating.py", line 117, in _render
+    rv = template.render(context)
+  File "C:\Users\huanri\myproject\lib\site-packages\jinja2\environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "C:\Users\huanri\myproject\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\huanri\PycharmProjects\myproject\app\templates\index.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\huanri\PycharmProjects\myproject\app\templates\base.html", line 34, in top-level template code
+    {% block content %}{% endblock %}
+  File "C:\Users\huanri\PycharmProjects\myproject\app\templates\index.html", line 5, in block "content"
+    {{ form.hidden_tag() }}
+  File "C:\Users\huanri\myproject\lib\site-packages\jinja2\environment.py", line 430, in getattr
+    return getattr(obj, attribute)
+UndefinedError: 'form' is undefined
+2018-08-07 15:21:35,342 ERROR:Exception on /index [GET] [in C:\Python36\lib\site-packages\flask\app.py:1761]
 Traceback (most recent call last):
-  File "c:\python36\lib\site-packages\flask\app.py", line 2292, in wsgi_app
+  File "C:\Python36\lib\site-packages\flask\app.py", line 2292, in wsgi_app
     response = self.full_dispatch_request()
-  File "c:\python36\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
+  File "C:\Python36\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
     rv = self.handle_user_exception(e)
-  File "c:\python36\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
+  File "C:\Python36\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
     reraise(exc_type, exc_value, tb)
-  File "c:\python36\lib\site-packages\flask\_compat.py", line 35, in reraise
+  File "C:\Python36\lib\site-packages\flask\_compat.py", line 35, in reraise
     raise value
-  File "c:\python36\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
+  File "C:\Python36\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
     rv = self.dispatch_request()
-  File "c:\python36\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+  File "C:\Python36\lib\site-packages\flask\app.py", line 1799, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\python36\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+  File "C:\Python36\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
     return func(*args, **kwargs)
-  File "C:\Users\huanri\Documents\myproject\app\views.py", line 59, in edit_profile
-    if form.validate_on_submit():
-  File "c:\python36\lib\site-packages\flask_wtf\form.py", line 101, in validate_on_submit
-    return self.is_submitted() and self.validate()
-  File "c:\python36\lib\site-packages\wtforms\form.py", line 310, in validate
-    return super(Form, self).validate(extra)
-  File "c:\python36\lib\site-packages\wtforms\form.py", line 152, in validate
-    if not field.validate(self, extra):
-  File "c:\python36\lib\site-packages\wtforms\fields\core.py", line 206, in validate
-    stop_validation = self._run_validation_chain(form, chain)
-  File "c:\python36\lib\site-packages\wtforms\fields\core.py", line 226, in _run_validation_chain
-    validator(form, self)
-  File "C:\Users\huanri\Documents\myproject\app\form.py", line 49, in validate_username
-NameError: name 'ValidationError' is not defined
-2018-07-30 16:56:06,270 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:59]
-2018-07-30 17:01:59,913 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:59]
-2018-07-30 17:02:28,577 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:59]
-2018-07-30 17:02:40,314 ERROR:Exception on /edit_profile [POST] [in c:\python36\lib\site-packages\flask\app.py:1761]
+  File "C:\Users\huanri\PycharmProjects\myproject\app\views.py", line 25, in index
+    return render_template("index.html", title='Home', user=user, posts=posts
+  File "C:\Python36\lib\site-packages\flask\templating.py", line 135, in render_template
+    context, ctx.app)
+  File "C:\Python36\lib\site-packages\flask\templating.py", line 117, in _render
+    rv = template.render(context)
+  File "C:\Python36\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "C:\Python36\lib\site-packages\jinja2\environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "C:\Python36\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Python36\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\huanri\PycharmProjects\myproject\app\templates\index.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\huanri\PycharmProjects\myproject\app\templates\base.html", line 34, in top-level template code
+    {% block content %}{% endblock %}
+  File "C:\Users\huanri\PycharmProjects\myproject\app\templates\index.html", line 5, in block "content"
+    {{ form.hidden_tag() }}
+  File "C:\Python36\lib\site-packages\jinja2\environment.py", line 430, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'form' is undefined
+2018-08-07 15:23:28,032 ERROR:Exception on /index [GET] [in C:\Python36\lib\site-packages\flask\app.py:1761]
 Traceback (most recent call last):
-  File "c:\python36\lib\site-packages\flask\app.py", line 2292, in wsgi_app
+  File "C:\Python36\lib\site-packages\flask\app.py", line 2292, in wsgi_app
     response = self.full_dispatch_request()
-  File "c:\python36\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
+  File "C:\Python36\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
     rv = self.handle_user_exception(e)
-  File "c:\python36\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
+  File "C:\Python36\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
     reraise(exc_type, exc_value, tb)
-  File "c:\python36\lib\site-packages\flask\_compat.py", line 35, in reraise
+  File "C:\Python36\lib\site-packages\flask\_compat.py", line 35, in reraise
     raise value
-  File "c:\python36\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
+  File "C:\Python36\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
     rv = self.dispatch_request()
-  File "c:\python36\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+  File "C:\Python36\lib\site-packages\flask\app.py", line 1799, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\python36\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
+  File "C:\Python36\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
     return func(*args, **kwargs)
-  File "C:\Users\huanri\Documents\myproject\app\views.py", line 59, in edit_profile
-    if form.validate_on_submit():
-  File "c:\python36\lib\site-packages\flask_wtf\form.py", line 101, in validate_on_submit
-    return self.is_submitted() and self.validate()
-  File "c:\python36\lib\site-packages\wtforms\form.py", line 310, in validate
-    return super(Form, self).validate(extra)
-  File "c:\python36\lib\site-packages\wtforms\form.py", line 152, in validate
-    if not field.validate(self, extra):
-  File "c:\python36\lib\site-packages\wtforms\fields\core.py", line 206, in validate
-    stop_validation = self._run_validation_chain(form, chain)
-  File "c:\python36\lib\site-packages\wtforms\fields\core.py", line 226, in _run_validation_chain
-    validator(form, self)
-  File "C:\Users\huanri\Documents\myproject\app\form.py", line 58, in validate_username
-    raise ValidationErrorrsfs('Please use a different username.')
-NameError: name 'ValidationErrorrsfs' is not defined
-2018-07-30 17:03:03,285 ERROR:Exception on /edit_profile [POST] [in c:\python36\lib\site-packages\flask\app.py:1761]
-Traceback (most recent call last):
-  File "c:\python36\lib\site-packages\flask\app.py", line 2292, in wsgi_app
-    response = self.full_dispatch_request()
-  File "c:\python36\lib\site-packages\flask\app.py", line 1815, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "c:\python36\lib\site-packages\flask\app.py", line 1718, in handle_user_exception
+  File "C:\Users\huanri\PycharmProjects\myproject\app\views.py", line 25, in index
+    return render_template("index.html", title='Home', user=user, posts=posts
+  File "C:\Python36\lib\site-packages\flask\templating.py", line 135, in render_template
+    context, ctx.app)
+  File "C:\Python36\lib\site-packages\flask\templating.py", line 117, in _render
+    rv = template.render(context)
+  File "C:\Python36\lib\site-packages\jinja2\asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "C:\Python36\lib\site-packages\jinja2\environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "C:\Python36\lib\site-packages\jinja2\environment.py", line 780, in handle_exception
     reraise(exc_type, exc_value, tb)
-  File "c:\python36\lib\site-packages\flask\_compat.py", line 35, in reraise
-    raise value
-  File "c:\python36\lib\site-packages\flask\app.py", line 1813, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "c:\python36\lib\site-packages\flask\app.py", line 1799, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "c:\python36\lib\site-packages\flask_login\utils.py", line 261, in decorated_view
-    return func(*args, **kwargs)
-  File "C:\Users\huanri\Documents\myproject\app\views.py", line 59, in edit_profile
-    if form.validate_on_submit():
-  File "c:\python36\lib\site-packages\flask_wtf\form.py", line 101, in validate_on_submit
-    return self.is_submitted() and self.validate()
-  File "c:\python36\lib\site-packages\wtforms\form.py", line 310, in validate
-    return super(Form, self).validate(extra)
-  File "c:\python36\lib\site-packages\wtforms\form.py", line 152, in validate
-    if not field.validate(self, extra):
-  File "c:\python36\lib\site-packages\wtforms\fields\core.py", line 206, in validate
-    stop_validation = self._run_validation_chain(form, chain)
-  File "c:\python36\lib\site-packages\wtforms\fields\core.py", line 226, in _run_validation_chain
-    validator(form, self)
-  File "C:\Users\huanri\Documents\myproject\app\form.py", line 58, in validate_username
-    raise ValidationError('Please use a different username.')
-NameError: name 'ValidationErrorrsfs' is not defined
-2018-07-30 17:03:12,885 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:59]
-2018-07-30 17:07:39,799 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:59]
-2018-07-30 18:21:06,809 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:59]
-2018-07-30 18:21:51,398 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:59]
-2018-07-30 18:22:15,756 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:59]
-2018-07-30 20:15:07,551 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:59]
-2018-07-30 20:15:35,038 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:59]
-2018-07-31 00:17:14,230 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:57]
-2018-07-31 00:18:07,752 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:57]
-2018-07-31 00:21:36,266 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:57]
-2018-07-31 00:21:49,513 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:57]
-2018-07-31 00:22:01,220 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:57]
-2018-07-31 00:22:17,114 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:57]
-2018-07-31 00:23:28,856 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:57]
-2018-07-31 00:23:49,041 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:57]
-2018-07-31 01:10:33,416 INFO:Microblog startup [in C:\Users\huanri\Documents\myproject\app\__init__.py:57]
+  File "C:\Python36\lib\site-packages\jinja2\_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\huanri\PycharmProjects\myproject\app\templates\index.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "C:\Users\huanri\PycharmProjects\myproject\app\templates\base.html", line 34, in top-level template code
+    {% block content %}{% endblock %}
+  File "C:\Users\huanri\PycharmProjects\myproject\app\templates\index.html", line 5, in block "content"
+    {{ form.hidden_tag() }}
+  File "C:\Python36\lib\site-packages\jinja2\environment.py", line 430, in getattr
+    return getattr(obj, attribute)
+jinja2.exceptions.UndefinedError: 'form' is undefined
