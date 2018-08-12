@@ -3,8 +3,14 @@ from flask import url_for, request, render_template, flash, redirect
 from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.urls import url_parse
 from app import app, db, login
-from .form import LoginForm, EditProfileForm, RegisterForm, PostForm
+from .form import LoginForm, EditProfileForm, RegisterForm, PostForm, ResetPasswordRequestForm
 from .models import User, Post
+from app.email import send_password_reset_email
+from flask_babel import _, get_locale
+from guess_language import guess_language
+from flask import g
+from app.translate import translate
+from flask import jsonify
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -13,12 +19,13 @@ from .models import User, Post
 def index():
     form = PostForm()
     if form.validate_on_submit():
-        post = Post(author=current_user, body=form.post.data)
-        print (post.body)
+        language = guess_language(form.post.data)
+        if language == 'UNKNOWN' or len(language) > 5:
+            language = ''
+        post = Post(author=current_user, body=form.post.data, language=language)
         db.session.add(post)
         db.session.commit()
-        # post = Post.query.filter_by(user_id=1).first()
-        flash('your post is now alive!')
+        flash(_('your post is now alive!'))
     page = request.args.get('page', 1, type=int)
     posts = current_user.followed_posts().paginate(page, app.config['POSTS_PER_PAGE'], False)
     if posts.has_next:
@@ -32,6 +39,7 @@ def index():
     return render_template('index.html', title='Home Page', post=posts, form=form,
                            next_url=next_url, pre_url=pre_url)
 
+
 # pagination view function#
 
 
@@ -39,17 +47,17 @@ def index():
 @login_required
 def explore():
     page = request.args.get('page', 1, type=int)
-    post = Post.query.order_by(Post.timestamp.desc()).paginate(page,app.config('POSTS_PER_PAGE'))
-    if post.has_next:
-        next_url = url_for('index', page=post.next_num)
+    posts = Post.query.order_by(Post.timestamp.desc()).paginate(page, app.config['POSTS_PER_PAGE'], False)
+    if posts.has_next:
+        next_url = url_for('explore', page=posts.next_num)
     else:
         next_url = None
-    if post.has_pre:
-        pre_url = url_for('index', post.pre_num)
+    if posts.has_prev:
+        pre_url = url_for('explore', page=posts.prev_num)
     else:
         pre_url = None
-    return render_template('index.html', title='Home Page', post=post.items, next_url=next_url, pre_url=pre_url)
-
+    return render_template("index.html", title='Explore', post=posts.items,
+                           next_url=next_url, pre_url=pre_url)
 
 
 @app.before_request
@@ -57,6 +65,7 @@ def before_request():
     if current_user.is_authenticated:
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
+    g.locale = str(get_locale())
 
 
 # login view function  #
@@ -93,7 +102,7 @@ def edit_profile():
         current_user.name = form.username.data
         current_user.about_me = form.about_me.data
         db.session.commit()
-        flash(u'Your changes have been saved.', 'warning')
+        flash(_(u'Your changes have been saved.'), 'warning')
         return redirect(url_for('edit_profile'))
     elif request.method == 'GET':
         form.username.data = current_user.name
@@ -134,9 +143,50 @@ def register():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
-        flash(u'Congratulations,you are registered successfully', 'warning')
+        flash(_('Congratulations,you are registered successfully'), 'warning')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
+
+
+#  reset password request view funciton#
+
+
+@app.route('/reset_password_request', methods=['GET', 'POST'])
+def reset_password_request():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = ResetPasswordRequestForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user:
+            send_password_reset_email(user)
+            flash(_('Check your email for the instructions to reset your password'))
+            return redirect(url_for('login'))
+        else:
+            flash(_('this email is not exist!'), 'error')
+    return render_template('reset_password_request.html',
+                           form=form,
+                           title='Reset Password'
+                           )
+
+
+#  reset password view function  #
+
+
+@app.route('/reset_password/<token>', methods=['GET', 'POST'])
+def reset_password(token):
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    user = User.verify_reset_password_token(token)
+    if not user:
+        return redirect(url_for('index'))
+    form = ResetPasswordForm()
+    if form.validate_on_submit():
+        user.set_password(form.password.data)
+        db.session.commit()
+        flash(_('Your password has been reset.'))
+        return redirect(url_for('login'))
+    return render_template('email/reset_password.html', form=form, user=user)
 
 
 #  follow user function  #
@@ -147,7 +197,7 @@ def register():
 def follow(username):
     user = User.query.filter_by(name=username).first()
     if user is None:
-        flash('User {} not found.'.format(username))
+        flash(_('User %{username} is not found.'.username.username))
         return redirect(url_for('index'))
     if user == current_user:
         flash('You cannot follow yourself!')
@@ -158,7 +208,7 @@ def follow(username):
     return redirect(url_for('user', username=username))
 
 
-#  follow user function  #
+#  unfollow user function  #
 
 
 @app.route('/unfollow/<username>')
@@ -175,3 +225,12 @@ def unfollow(username):
     db.session.commit()
     flash('You are not following {}.'.format(username))
     return redirect(url_for('user', username=username))
+
+
+@app.route('/translate', methods=['POST'])
+@login_required
+def translate_text():
+    return jsonify({'text': translate(request.form['text'],
+                                      request.form['source_language'],
+                                      request.form['dest_language'])}
+                   )

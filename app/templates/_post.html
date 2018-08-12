@@ -1,6 +1,22 @@
-<table valign="top">
+<table class="table table-hover">
     <tr>
-        <td><img src="{{p.author.avatar(36)}}" alt=""></td>
-        <td>{{p.author.name}} says:{{p.body}}</td>
+        <td width="70px"><img src="{{p.author.avatar(36)}}" alt=""></td>
+        <td>
+            {% set user_link %}
+            <a href="{{ url_for('user', name=p.author.name) }}">{{ p.author.name }}</a>
+            {% endset %}
+            {{ _('%(username)s said %(when)s',
+            username=user_link, when=moment(p.timestamp).fromNow()) }}
+            : <span id="post{{ p.id }}">{{p.body}}</span></td>
+            <td>
+                {% if p.language and p.language != g.locale  %}
+                    <span id="translation{{ p.id }}">
+                        <a href="javascript:translate(
+                        '#post{{ p.id }}',
+                        '#translation{{ p.id }}',
+                        '{{ p.language }}',
+                        '{{ g.locale }}');">{{ _('Translate') }}</a></span>
+                {% endif %}
+            </td>
     </tr>
 </table>

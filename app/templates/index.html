@@ -1,27 +1,49 @@
 {% extends "base.html"%}
+{% import 'bootstrap/wtf.html' as wtf %}
 
-{% block content %}
-	<p>Hi,{{current_user.name}}</p>
-    <form action="" method="post">
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.post.label }} <br>
-            {{ form.post(cols=32,row=40) }} <br>
-            {% for error in form.post.error %}
-                <span style="color: red">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>{{ form.submit() }}</p>
-    </form>
+
+{% block app_content %}
+	<p>{{ _('Hi,%(username)s!', username=current_user.name) }} </p>
+    {% if form %}
+        {{ wtf.quick_form(form)}}
+{#    <form action="" method="post">#}
+{#        {{ form.hidden_tag() }}#}
+{#        <p>#}
+{#            {{ form.post.label }} <br>#}
+{#            {{ form.post(cols=32,row=40) }} <br>#}
+{#            {% for error in form.post.error %}#}
+{#                <span style="color: red">[{{ error }}]</span>#}
+{#            {% endfor %}#}
+{#        </p>#}
+{#        <p>{{ form.submit() }}</p>#}
+{#    </form>#}
+    {% endif %}
     <div id="post">
     {% for p in post.items %}
         {% include '_post.html' %}
+{#        <table valign="top">#}
+{#            <tr>#}
+{#                <td><img src="{{p.author.avatar(36)}}" alt=""></td>#}
+{#                <td><a href="">{{ p.author.name }}</a>says: {{p.body}}</td>#}
+{#            </tr>#}
+{#        </table>#}
     {% endfor %}
-    {% if pre_url %}
-        <a href="{{ pre_url }}">Newer Posts</a>
-    {% endif %}
-    {% if next_url %}
-        <a href="{{ next_url }}">Older Posts</a>
-    {% endif %}
+    <nav>
+        <ul class="pager">
+            <li class="previous{% if not prev_url %} disabled{% endif %}">
+                {% if pre_url %}
+                 <a href="{{ pre_url }}">Newer Posts</a>
+                {% endif %}
+            </li>
+            <li class="previous{% if not next_url %} disabled{% endif %}">
+                {% if next_url %}
+                    <a href="{{ next_url }}">Older Posts</a>
+                {% endif %}
+            </li>
+        </ul>
+    </nav>
+{#    {% if pre_url %}#}
+{#        <a href="{{ pre_url }}">Newer Posts</a>#}
+{#    {% endif %}#}
      </div>
 {% endblock %}
